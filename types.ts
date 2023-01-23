@@ -1,6 +1,6 @@
-export type UseFormValues = {
+export type ContactFormValues = {
   email: string;
-  firstName?: string;
-  lastName?: string;
-  message?: string;
+  firstName: string;
+  lastName: string;
+  message: string;
 };

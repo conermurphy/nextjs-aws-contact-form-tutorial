@@ -1,9 +1,9 @@
 import 'isomorphic-fetch';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { UseFormValues } from '../../types';
+import { ContactFormValues } from '../../types';
 
 interface ExtendedNextApiRequest extends NextApiRequest {
-  body: UseFormValues;
+  body: ContactFormValues;
 }
 
 interface ExtendedNextApiResponse extends NextApiResponse {
@@ -35,7 +35,7 @@ export default async function contactForm(
   const endpoint = process.env.CONTACT_FORM_ENDPOINT;
 
   // posting to the API
-  const response = await fetch(endpoint, {
+  await fetch(endpoint, {
     method: 'post',
     body: JSON.stringify({
       firstName: body.firstName,
@@ -49,8 +49,6 @@ export default async function contactForm(
       charset: 'utf-8',
     },
   });
-
-  console.log(response)
 
   res.status(200).json({ message: 'Success! Thank you for message!' });
 }

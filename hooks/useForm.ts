@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { UseFormValues } from '../types';
+import { ContactFormValues} from '../types';
 
 type UpdateProps = {
   target: {
@@ -13,12 +13,14 @@ export type UseFormUpdateValues = ({
 }: UpdateProps) => void;
 
 interface ReturnProps {
-  values: UseFormValues;
+  values: ContactFormValues;
   updateValue: UseFormUpdateValues;
   resetValues: () => void;
 }
 
-export default function useForm(defaults: UseFormValues): ReturnProps {
+export default function useForm(
+  defaults: ContactFormValues
+): ReturnProps {
   const [values, setValues] = useState(defaults);
 
   function updateValue({ target: { value, name } }: UpdateProps) {

@@ -1,6 +1,6 @@
 import React from 'react';
-import useContactForm from '../utils/useContactForm';
-import useForm from '../utils/useForm';
+import useContactForm from '../hooks/useContactForm';
+import useForm from '../hooks/useForm';
 
 export default function ContactForm(): JSX.Element {
   const { values, updateValue, resetValues } = useForm({

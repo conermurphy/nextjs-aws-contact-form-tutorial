@@ -1,8 +1,9 @@
 import { SyntheticEvent, useState } from 'react';
-import { UseFormValues } from '../types';
+import { server } from '../config';
+import { ContactFormValues } from '../types';
 
 interface IProps {
-  values: UseFormValues;
+  values: ContactFormValues;
   resetValues: () => void;
 }
 
@@ -51,7 +52,7 @@ export default function useContactForm({ values, resetValues }: IProps) {
     }
 
     // Send the data to the serverless function on submit.
-    const res = await fetch(`/api/contactForm`, {
+    const res = await fetch(`${server}/api/contactForm`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -59,10 +60,10 @@ export default function useContactForm({ values, resetValues }: IProps) {
       body: JSON.stringify(body),
     });
 
-    const resonseText: string = await res.text();
+    const responseText: string = await res.text();
 
     // Waiting for the output of the serverless function and storing into the serverlessBaseoutput var.
-    const output = (await JSON.parse(resonseText)) as Output;
+    const output = (await JSON.parse(responseText)) as Output;
 
     // check if successful or if was an error
     if (res.status >= 400 && res.status < 600) {
